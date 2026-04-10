@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Coaching Business Audit — IFCA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Lora:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3A5F;--navy-dark:#111e2e;--navy-card:#172840;--navy-mid:#1e3050;
+  --orange:#E87722;--orange-lt:#f08c3a;--orange-glow:rgba(232,119,34,.18);
+  --sky:#c8ddef;--sky-dim:#8faabf;--white:#ffffff;
+  --g400:#7b97b3;--g600:#445e78;
+  --green:#22c97a;--green-bg:rgba(34,201,122,.10);
+  --yellow:#f5c23a;--yellow-bg:rgba(245,194,58,.10);
+  --red:#e8403e;--red-bg:rgba(232,64,62,.10);
+  --ff-d:'Barlow Condensed',sans-serif;--ff-b:'Lora',serif;--ff-m:'DM Mono',monospace;
+  --r:10px;--t:0.22s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-b);background:var(--navy-dark);color:var(--white);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
+.page{position:relative;z-index:1}
+.wrap{max-width:700px;margin:0 auto;padding:0 22px}
+
+/* HERO */
+.hero{padding:60px 24px 52px;text-align:center;background:linear-gradient(170deg,#0d1a28 0%,#1a3050 55%,#0d1a28 100%);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(232,119,34,.13) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,119,34,.15);border:1px solid rgba(232,119,34,.35);color:var(--orange-lt);font-family:var(--ff-d);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:26px}
+.hero h1{font-family:var(--ff-d);font-weight:900;font-size:clamp(42px,8vw,78px);line-height:.92;text-transform:uppercase;letter-spacing:-.01em;color:var(--white);margin-bottom:6px}
+.hero h1 em{font-style:italic;color:var(--orange);display:block;font-size:.88em}
+.hero-rule{width:40px;height:3px;background:var(--orange);margin:22px auto;border-radius:2px}
+.hero-sub{font-family:var(--ff-b);font-size:clamp(14px,2vw,16px);color:var(--sky);line-height:1.7;max-width:480px;margin:0 auto;font-weight:400}
+
+/* BRANCH */
+.branch-section{background:var(--navy-dark);padding:52px 24px 0}
+.branch-eyebrow{text-align:center;font-family:var(--ff-d);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.branch-title{text-align:center;font-family:var(--ff-d);font-weight:800;font-size:clamp(24px,4vw,32px);text-transform:uppercase;letter-spacing:.02em;color:var(--white);margin-bottom:36px}
+.branch-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.branch-cards{grid-template-columns:1fr}}
+.branch-card{background:var(--navy-card);border:2px solid rgba(255,255,255,.08);border-radius:var(--r);padding:28px 24px;cursor:pointer;transition:border-color var(--t),transform var(--t),background var(--t);position:relative;overflow:hidden;text-align:center}
+.branch-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,var(--orange-glow),transparent 70%);opacity:0;transition:opacity var(--t);pointer-events:none}
+.branch-card:hover{border-color:var(--orange);transform:translateY(-3px)}
+.branch-card:hover::before{opacity:1}
+.branch-card.selected{border-color:var(--orange);background:linear-gradient(160deg,rgba(232,119,34,.1),var(--navy-card))}
+.branch-card.selected::before{opacity:1}
+.bc-icon{font-size:38px;margin-bottom:14px;display:block;transition:transform var(--t)}
+.branch-card:hover .bc-icon{transform:scale(1.08)}
+.bc-title{font-family:var(--ff-d);font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.04em;color:var(--white);margin-bottom:8px;line-height:1.1}
+.bc-desc{font-family:var(--ff-b);font-size:13px;color:var(--sky-dim);line-height:1.6}
+.bc-tag{display:inline-block;margin-top:14px;background:rgba(232,119,34,.15);color:var(--orange-lt);font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px}
+
+/* FORMS */
+.form-section{display:none;padding:44px 24px 20px;background:var(--navy-dark)}
+.form-section.active{display:block}
+.fh-step{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.fh-title{font-family:var(--ff-d);font-weight:900;font-size:clamp(26px,4vw,36px);text-transform:uppercase;letter-spacing:.02em;line-height:1.05;color:var(--white);margin-bottom:8px}
+.fh-desc{font-family:var(--ff-b);font-size:14px;color:var(--sky);line-height:1.65;margin-bottom:32px}
+.ig-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.ig-stack{display:flex;flex-direction:column;gap:14px;margin-bottom:14px}
+@media(max-width:480px){.ig-grid{grid-template-columns:1fr}}
+.input-group{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);border-radius:8px;padding:20px 22px;transition:border-color var(--t),background var(--t)}
+.input-group:focus-within{border-color:var(--orange);background:rgba(232,119,34,.05)}
+.ig-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.ig-label{font-family:var(--ff-d);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--g400)}
+.ig-bench{background:rgba(232,119,34,.13);color:var(--orange-lt);font-family:var(--ff-d);font-weight:600;font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:3px;white-space:nowrap}
+.input-row{display:flex;align-items:center;gap:8px}
+.input-prefix,.input-suffix{font-family:var(--ff-d);font-weight:700;font-size:24px;color:var(--g600);flex-shrink:0}
+input[type="number"]{background:transparent;border:none;outline:none;font-family:var(--ff-d);font-weight:700;font-size:32px;color:var(--white);width:100%;-moz-appearance:textfield;line-height:1}
+input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none}
+input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
+.ig-hint{font-family:var(--ff-b);font-size:11.5px;color:var(--g600);margin-top:6px;font-style:italic}
+.run-btn{width:100%;margin-top:12px;background:var(--orange);color:var(--white);border:none;cursor:pointer;font-family:var(--ff-d);font-weight:800;font-size:19px;letter-spacing:.07em;text-transform:uppercase;padding:20px 32px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:12px;transition:background var(--t),transform var(--t),box-shadow var(--t);box-shadow:0 4px 24px rgba(232,119,34,.3)}
+.run-btn:hover{background:var(--orange-lt);transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,119,34,.45)}
+.run-btn:active{transform:translateY(0)}
+.run-btn .arrow{font-size:20px;transition:transform var(--t)}
+.run-btn:hover .arrow{transform:translateX(5px)}
+@keyframes pulse{0%,100%{box-shadow:0 4px 24px rgba(232,119,34,.3)}50%{box-shadow:0 4px 36px rgba(232,119,34,.6)}}
+.pulse{animation:pulse 2.2s ease-in-out infinite}
+.back-link{display:block;text-align:center;margin-top:18px;font-family:var(--ff-b);font-size:13px;color:var(--g600);cursor:pointer;background:none;border:none;text-decoration:underline}
+.back-link:hover{color:var(--g400)}
+
+/* RESULTS */
+.results-section{display:none;padding:0 24px 72px;background:var(--navy-dark)}
+.results-section.active{display:block}
+.score-header{background:linear-gradient(145deg,var(--navy-mid) 0%,var(--navy-card) 100%);border:1px solid rgba(255,255,255,.09);border-radius:var(--r);padding:36px 32px;margin-bottom:22px;text-align:center;position:relative;overflow:hidden}
+.score-header::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(232,119,34,.14) 0%,transparent 60%);pointer-events:none}
+.sh-eyebrow{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.sh-headline{font-family:var(--ff-d);font-weight:900;font-size:clamp(26px,5vw,44px);text-transform:uppercase;letter-spacing:.01em;line-height:1;color:var(--white);margin-bottom:10px}
+.sh-sub{font-family:var(--ff-b);font-size:14px;color:var(--sky);line-height:1.65;max-width:480px;margin:0 auto}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+@media(max-width:480px){.pillars{grid-template-columns:1fr}}
+.pillar-card{border-radius:8px;padding:20px 16px;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.07)}
+.pillar-card::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:8px 8px 0 0}
+.p-green{background:var(--green-bg)}.p-green::after{background:var(--green)}
+.p-yellow{background:var(--yellow-bg)}.p-yellow::after{background:var(--yellow)}
+.p-red{background:var(--red-bg)}.p-red::after{background:var(--red)}
+.p-name{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.p-green .p-name{color:var(--green)}.p-yellow .p-name{color:var(--yellow)}.p-red .p-name{color:var(--red)}
+.p-status{font-family:var(--ff-d);font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:.03em;color:var(--white);margin-bottom:4px}
+.p-val{font-family:var(--ff-m);font-size:12px;color:var(--sky-dim)}
+
+/* Constraint block */
+.cb{border-radius:var(--r);padding:26px 28px;margin-bottom:22px;display:flex;gap:20px;align-items:flex-start;border-left:4px solid}
+.cb-red{background:var(--red-bg);border-color:var(--red)}
+.cb-yellow{background:var(--yellow-bg);border-color:var(--yellow)}
+.cb-green{background:var(--green-bg);border-color:var(--green)}
+.cb-icon{font-size:34px;flex-shrink:0;line-height:1;padding-top:2px}
+.cb-label{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g400);margin-bottom:5px}
+.cb-title{font-family:var(--ff-d);font-weight:800;font-size:21px;text-transform:uppercase;letter-spacing:.02em;color:var(--white);margin-bottom:9px;line-height:1.1}
+.cb-text{font-family:var(--ff-b);font-size:13.5px;color:var(--sky);line-height:1.7}
+
+/* Opportunity */
+.opp-card{border-radius:var(--r);padding:28px 32px;margin-bottom:22px;text-align:center;background:linear-gradient(135deg,rgba(232,119,34,.1) 0%,rgba(232,119,34,.04) 100%);border:1px solid rgba(232,119,34,.25);display:none}
+.opp-card.vis{display:block}
+.opp-eyebrow{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.opp-number{font-family:var(--ff-d);font-weight:900;font-size:clamp(44px,8vw,72px);color:var(--orange);line-height:1;margin-bottom:8px}
+.opp-desc{font-family:var(--ff-b);font-size:14px;color:var(--sky);max-width:460px;margin:0 auto;line-height:1.65}
+
+/* Tables */
+.tcard{background:var(--navy-card);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden;margin-bottom:22px}
+.tcard-hdr{background:rgba(255,255,255,.04);padding:12px 20px;font-family:var(--ff-d);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--g400);border-bottom:1px solid rgba(255,255,255,.06)}
+.tcard table{width:100%;border-collapse:collapse}
+.tcard thead th{padding:11px 18px;font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--g600);text-align:left;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.05)}
+.tcard tbody td{padding:13px 18px;font-family:var(--ff-b);font-size:13px;color:var(--sky);border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+.tcard tbody tr:last-child td{border-bottom:none}
+.tcard tbody td:first-child{color:var(--white);font-weight:600;width:38%}
+.td-good{color:var(--green)!important;font-family:var(--ff-m);font-size:13px}
+.td-warn{color:var(--yellow)!important;font-family:var(--ff-m);font-size:13px}
+.td-bad{color:var(--red)!important;font-family:var(--ff-m);font-size:13px}
+.td-neu{color:var(--white)!important;font-family:var(--ff-m);font-size:13px}
+.sdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:middle}
+
+/* Projection rows */
+.proj-row{display:flex;align-items:stretch;border-bottom:1px solid rgba(255,255,255,.05)}
+.proj-row:last-child{border-bottom:none}
+.proj-row.hl .proj-s{color:var(--orange)}
+.proj-row.hl .proj-v span{color:var(--green);font-size:30px}
+.proj-s{background:rgba(255,255,255,.03);padding:16px 20px;font-family:var(--ff-d);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--g400);width:44%;border-right:1px solid rgba(255,255,255,.05);display:flex;align-items:center}
+.proj-v{padding:16px 20px;flex:1;display:flex;align-items:center}
+.proj-v span{font-family:var(--ff-d);font-weight:800;font-size:24px;color:var(--white)}
+.proj-v .sub{font-family:var(--ff-b);font-size:12px;color:var(--sky-dim);display:block;line-height:1.4;margin-top:2px}
+
+/* CTA */
+.cta-block{background:linear-gradient(145deg,var(--navy-mid) 0%,var(--navy-card) 100%);border:1px solid rgba(232,119,34,.2);border-radius:12px;padding:42px 36px;text-align:center;position:relative;overflow:hidden}
+.cta-block::after{content:'';position:absolute;bottom:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(232,119,34,.12) 0%,transparent 65%);pointer-events:none}
+.cta-eyebrow{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.cta-title{font-family:var(--ff-d);font-weight:900;font-size:clamp(26px,4.5vw,42px);text-transform:uppercase;letter-spacing:.02em;line-height:1;color:var(--white);margin-bottom:14px}
+.cta-desc{font-family:var(--ff-b);font-size:15px;color:var(--sky);line-height:1.7;max-width:460px;margin:0 auto 28px}
+.cta-link{display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:var(--white);text-decoration:none;font-family:var(--ff-d);font-weight:800;font-size:17px;letter-spacing:.07em;text-transform:uppercase;padding:19px 38px;border-radius:7px;transition:background var(--t),transform var(--t),box-shadow var(--t);box-shadow:0 4px 28px rgba(232,119,34,.4)}
+.cta-link:hover{background:var(--orange-lt);transform:translateY(-2px);box-shadow:0 8px 36px rgba(232,119,34,.5)}
+.cta-link .arrow{transition:transform var(--t)}
+.cta-link:hover .arrow{transform:translateX(4px)}
+.cta-note{margin-top:14px;font-family:var(--ff-b);font-size:12px;color:var(--g600);font-style:italic}
+.reset-btn{display:block;text-align:center;margin-top:26px;font-family:var(--ff-b);font-size:13px;color:var(--g600);cursor:pointer;background:none;border:none;text-decoration:underline}
+.reset-btn:hover{color:var(--g400)}
+
+/* Footer */
+.footer{background:var(--navy-dark);border-top:1px solid rgba(255,255,255,.05);padding:22px;text-align:center}
+.footer p{font-family:var(--ff-b);font-size:12px;color:var(--g600)}
+.footer a{color:var(--g400);text-decoration:none}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.an{animation:fadeUp .4s ease both}
+.a1{animation-delay:.04s}.a2{animation-delay:.12s}.a3{animation-delay:.22s}.a4{animation-delay:.32s}.a5{animation-delay:.44s}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">⚡ IFCA · Free Tool</div>
+  <h1>Coaching Business<em>Audit</em></h1>
+  <div class="hero-rule"></div>
+  <p class="hero-sub">Answer 5 questions. We'll show you exactly where your revenue is constrained — and what to fix first to unlock your next $30K/month.</p>
+</div>
+
+<!-- BRANCH -->
+<div class="branch-section" id="branch-section">
+  <div class="wrap">
+    <div class="branch-eyebrow">Step 1 — Tell Us Where You Are</div>
+    <div class="branch-title">Are You Currently Running Meta Ads?</div>
+    <div class="branch-cards">
+      <div class="branch-card" id="card-yes" onclick="selectBranch('ads')">
+        <span class="bc-icon">📊</span>
+        <div class="bc-title">Yes, I'm Running Ads</div>
+        <p class="bc-desc">I have an active Meta ad account and I'm currently spending money on ads.</p>
+        <span class="bc-tag">Audit Your Performance →</span>
+      </div>
+      <div class="branch-card" id="card-no" onclick="selectBranch('organic')">
+        <span class="bc-icon">🌱</span>
+        <div class="bc-title">No, Not Yet</div>
+        <p class="bc-desc">I'm growing through organic content, referrals, or word of mouth only.</p>
+        <span class="bc-tag">See Your Opportunity →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM: ADS PATH -->
+<div class="form-section" id="form-ads">
+  <div class="wrap">
+    <div class="fh-step">Step 2 of 2 — Running Ads</div>
+    <div class="fh-title">Your Ad Metrics</div>
+    <p class="fh-desc">Use your last 30 days from Meta Ads Manager. Round numbers are fine — this is a diagnostic, not an accounting report.</p>
+
+    <div class="ig-grid">
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Offer Price</div></div>
+        <div class="input-row"><span class="input-prefix">$</span><input type="number" id="a-price" placeholder="3000" min="0"></div>
+        <div class="ig-hint">Your primary coaching program price</div>
+      </div>
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Monthly Ad Spend</div></div>
+        <div class="input-row"><span class="input-prefix">$</span><input type="number" id="a-spend" placeholder="2000" min="0"></div>
+        <div class="ig-hint">Total spent on Meta ads last month</div>
+      </div>
+    </div>
+
+    <div class="ig-grid">
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Booked Calls / Month</div></div>
+        <div class="input-row"><input type="number" id="a-booked" placeholder="20" min="0"><span class="input-suffix">calls</span></div>
+        <div class="ig-hint">Total calls booked from ads last month</div>
+      </div>
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Qualified Calls</div><span class="ig-bench">Target: 60%+ of booked</span></div>
+        <div class="input-row"><input type="number" id="a-qualified" placeholder="14" min="0"><span class="input-suffix">calls</span></div>
+        <div class="ig-hint">Calls that were genuinely a good fit</div>
+      </div>
+    </div>
+
+    <div class="ig-stack">
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Close Rate on Qualified Calls</div><span class="ig-bench">Target: 25–40%</span></div>
+        <div class="input-row"><input type="number" id="a-close" placeholder="28" min="0" max="100" step="0.5"><span class="input-suffix">%</span></div>
+        <div class="ig-hint">% of qualified calls that enrolled as paying clients</div>
+      </div>
+    </div>
+
+    <button class="run-btn pulse" onclick="runAdsAudit()">Show My Constraint <span class="arrow">→</span></button>
+    <button class="back-link" onclick="resetToStart()">← Change my answer</button>
+  </div>
+</div>
+
+<!-- FORM: ORGANIC PATH -->
+<div class="form-section" id="form-organic">
+  <div class="wrap">
+    <div class="fh-step">Step 2 of 2 — Organic Only</div>
+    <div class="fh-title">Your Current Numbers</div>
+    <p class="fh-desc">Tell us what your business looks like right now — we'll model exactly what a paid lead engine would add to your revenue.</p>
+
+    <div class="ig-grid">
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Offer Price</div></div>
+        <div class="input-row"><span class="input-prefix">$</span><input type="number" id="o-price" placeholder="3000" min="0"></div>
+        <div class="ig-hint">Your primary coaching program price</div>
+      </div>
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Monthly Revenue</div></div>
+        <div class="input-row"><span class="input-prefix">$</span><input type="number" id="o-revenue" placeholder="15000" min="0"></div>
+        <div class="ig-hint">Your average monthly revenue right now</div>
+      </div>
+    </div>
+
+    <div class="ig-grid">
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Booked Calls / Month</div></div>
+        <div class="input-row"><input type="number" id="o-booked" placeholder="10" min="0"><span class="input-suffix">calls</span></div>
+        <div class="ig-hint">From organic content, referrals, and DMs</div>
+      </div>
+      <div class="input-group">
+        <div class="ig-top"><div class="ig-label">Close Rate</div><span class="ig-bench">Target: 25–40%</span></div>
+        <div class="input-row"><input type="number" id="o-close" placeholder="30" min="0" max="100" step="0.5"><span class="input-suffix">%</span></div>
+        <div class="ig-hint">% of calls that become paying clients</div>
+      </div>
+    </div>
+
+    <button class="run-btn pulse" onclick="runOrganicAudit()">Show My Opportunity <span class="arrow">→</span></button>
+    <button class="back-link" onclick="resetToStart()">← Change my answer</button>
+  </div>
+</div>
+
+<!-- RESULTS: ADS -->
+<div class="results-section" id="results-ads">
+  <div class="wrap">
+    <div class="score-header an a1">
+      <div class="sh-eyebrow">Your Audit Results — Running Ads</div>
+      <div class="sh-headline" id="ads-headline">—</div>
+      <p class="sh-sub" id="ads-sub">—</p>
+    </div>
+    <div class="pillars an a2" id="ads-pillars"></div>
+    <div class="cb an a3" id="ads-cb"></div>
+    <div class="opp-card an a3" id="ads-opp">
+      <div class="opp-eyebrow">Estimated Monthly Revenue Left on the Table</div>
+      <div class="opp-number" id="ads-opp-num">—</div>
+      <p class="opp-desc" id="ads-opp-desc">—</p>
+    </div>
+    <div class="tcard an a4">
+      <div class="tcard-hdr">Your Numbers vs. Targets</div>
+      <table><thead><tr><th>Metric</th><th>Yours</th><th>Target</th><th>Status</th></tr></thead>
+      <tbody id="ads-tbody"></tbody></table>
+    </div>
+    <div class="cta-block an a5">
+      <div class="cta-eyebrow">Your Next Step</div>
+      <div class="cta-title">Let's Fix This Together</div>
+      <p class="cta-desc">Watch the 3-minute video to learn how we'll help you unlock an extra $30K/month in your coaching business — and to see if you qualify for a one-on-one business audit call.</p>
+      <a href="https://www.impactcoachacademy.com/community-funnel?el=podcast" target="_blank" class="cta-link">Watch the Video &amp; See If You Qualify <span class="arrow">→</span></a>
+      <p class="cta-note">We'll review your numbers, your math, and show you exactly what's in the way.</p>
+    </div>
+    <button class="reset-btn" onclick="resetToStart()">← Start over with different numbers</button>
+  </div>
+</div>
+
+<!-- RESULTS: ORGANIC -->
+<div class="results-section" id="results-organic">
+  <div class="wrap">
+    <div class="score-header an a1">
+      <div class="sh-eyebrow">Your Opportunity Assessment — Organic Only</div>
+      <div class="sh-headline" id="org-headline">—</div>
+      <p class="sh-sub" id="org-sub">—</p>
+    </div>
+    <div class="opp-card vis an a2" id="org-opp">
+      <div class="opp-eyebrow">Monthly Revenue You're Leaving Behind Without Ads</div>
+      <div class="opp-number" id="org-opp-num">—</div>
+      <p class="opp-desc" id="org-opp-desc">—</p>
+    </div>
+    <div class="cb an a3" id="org-cb"></div>
+    <div class="tcard an a4" id="org-proj-card">
+      <div class="tcard-hdr">What a Paid Lead Engine Would Add</div>
+      <div id="org-proj-rows"></div>
+    </div>
+    <div class="tcard an a4">
+      <div class="tcard-hdr">Your Current Baseline</div>
+      <table><thead><tr><th>Metric</th><th>Current</th><th>Note</th></tr></thead>
+      <tbody id="org-tbody"></tbody></table>
+    </div>
+    <div class="cta-block an a5">
+      <div class="cta-eyebrow">Your Next Step</div>
+      <div class="cta-title">You're Ready for a Paid Lead Engine</div>
+      <p class="cta-desc">Watch the 3-minute video to learn how we'll help you unlock an extra $30K/month in your coaching business — and to see if you qualify for a one-on-one business audit call.</p>
+      <a href="https://www.impactcoachacademy.com/community-funnel?el=podcast" target="_blank" class="cta-link">Watch the Video &amp; See If You Qualify <span class="arrow">→</span></a>
+      <p class="cta-note">We'll review your numbers, your math, and show you exactly what's in the way.</p>
+    </div>
+    <button class="reset-btn" onclick="resetToStart()">← Start over with different numbers</button>
+  </div>
+</div>
+
+<div class="footer">
+  <p>© Impact Fitness Coaching Academy · <a href="https://www.impactcoachacademy.com/community-funnel?el=podcast">impactcoachacademy.com</a></p>
+</div>
+</div>
+
+<script>
+/* ── utils ── */
+function fmt(n,d=0){if(n==null||isNaN(n))return'—';return'$'+n.toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+function fN(n,d=1){if(n==null||isNaN(n))return'—';return n.toFixed(d)}
+function num(id){const v=parseFloat(document.getElementById(id).value);return isNaN(v)?null:v}
+function show(id){document.getElementById(id).classList.add('active')}
+function hide(id){document.getElementById(id).classList.remove('active')}
+function scrollTo_(id){setTimeout(()=>document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'}),80)}
+
+function selectBranch(t){
+  document.getElementById('card-yes').classList.remove('selected');
+  document.getElementById('card-no').classList.remove('selected');
+  hide('form-ads');hide('form-organic');
+  if(t==='ads'){document.getElementById('card-yes').classList.add('selected');show('form-ads')}
+  else{document.getElementById('card-no').classList.add('selected');show('form-organic')}
+  setTimeout(()=>document.getElementById(t==='ads'?'form-ads':'form-organic').scrollIntoView({behavior:'smooth',block:'start'}),80);
+}
+
+/* ── ADS AUDIT ── */
+function runAdsAudit(){
+  const price=num('a-price'),spend=num('a-spend'),booked=num('a-booked'),qualified=num('a-qualified'),closeRate=num('a-close');
+  if(!price){alert('Please enter your offer price.');return}
+
+  const maxCAC=price*0.25, maxCPQC=maxCAC/3;
+  const cpbc=(spend&&booked)?spend/booked:null;
+  const cpqc=(spend&&qualified)?spend/qualified:null;
+  const qualRate=(booked&&qualified)?(qualified/booked)*100:null;
+  const newClients=(qualified&&closeRate)?qualified*(closeRate/100):null;
+  const cac=(newClients&&newClients>0&&spend)?spend/newClients:null;
+
+  // pillar statuses
+  let volS='yellow';
+  if(cpbc!=null){volS=cpbc<=maxCAC*0.4?'green':cpbc<=maxCAC*0.7?'yellow':'red'}
+  else if(booked!=null){volS=booked>=15?'green':booked>=8?'yellow':'red'}
+  let qualS='yellow';
+  if(qualRate!=null){qualS=qualRate>=60?'green':qualRate>=40?'yellow':'red'}
+  let closeS='yellow';
+  if(closeRate!=null){closeS=closeRate>=25?'green':closeRate>=15?'yellow':'red'}
+
+  // top constraint
+  const w={vol:volS==='red'?3:volS==='yellow'?2:0, qual:qualS==='red'?3:qualS==='yellow'?2:0, close:closeS==='red'?3:closeS==='yellow'?2:0};
+  const top=Object.entries(w).sort((a,b)=>b[1]-a[1])[0][0];
+  const allGood=w.vol===0&&w.qual===0&&w.close===0;
+
+  const cbMap={
+    vol:{cls:'cb-red',icon:'📉',title:"Lead Volume — Your Spend Isn't Generating Enough Pipeline",
+      text:`Your cost per booked call${cpbc?` (${fmt(cpbc,0)})`:''}${maxCAC?` is high relative to your ${fmt(maxCAC,0)} max CAC`:''}.  You're not getting enough calls from your current spend to build predictable revenue at your offer price. This is almost always a creative problem — not a budget problem. More spend on a broken ad machine just accelerates the leak. Fix the hook diversity and entity structure first, then scale budget.`},
+    qual:{cls:'cb-yellow',icon:'🎯',title:"Lead Quality — The Wrong People Are Booking Your Calls",
+      text:`Only ${qualRate!=null?fN(qualRate,0)+'%':'a portion'} of your booked calls are qualifying. This traces back to your ad's promise vs. the reality of your offer. Your creative is casting too wide a net. The fix: tighten the call-out in your ads, add 1–2 pre-call qualification questions to your booking form, and make your CTA more specific about who this is for. Better leads close at higher rates without touching your sales process.`},
+    close:{cls:'cb-yellow',icon:'📞',title:"Close Rate — Qualified Calls Aren't Converting",
+      text:`A ${closeRate!=null?fN(closeRate,1)+'%':'low'} close rate on qualified calls means the interest is there but something is breaking on the call. Common causes: objections not being addressed before they arise, weak value demonstration, or a gap between what the ad promises and what the call delivers. A 10-point improvement in close rate on your current qualified volume would add approximately ${qualified&&price?fmt(qualified*0.1*price,0):'significant revenue'} per month — without booking a single additional call.`}
+  };
+
+  const pc=allGood?{cls:'cb-green',icon:'✅',title:"Your Core Metrics Are Healthy — Time to Scale Creative",text:"Your lead volume, lead quality, and close rate are all in healthy ranges. The constraint now is creative output and entity diversity. Most coaches at this stage are under-producing new ad concepts relative to their budget. The 70/30 rule: 70% of budget on proven creative, 30% on testing new hooks and formats weekly. Give the algorithm more to work with and watch your CPCs drop."}:cbMap[top];
+
+  // opportunity calc
+  let oppNum=null,oppDesc='';
+  if(!allGood){
+    if(top==='vol'&&cpbc!=null&&maxCAC){
+      const better=spend/((cpbc*0.6));const gain=(better-(booked||0))*(((closeRate||25)/100)*0.65)*price;
+      if(gain>0){oppNum=gain;oppDesc=`Estimated additional monthly revenue if your cost per booked call improved by 40% — based on your current spend of ${fmt(spend,0)} and offer price of ${fmt(price,0)}.`}
+    } else if(top==='qual'&&qualRate!=null&&booked&&closeRate&&price){
+      const betterQ=booked*0.60;const gain=(betterQ-(qualified||0))*(closeRate/100)*price;
+      if(gain>0){oppNum=gain;oppDesc=`Estimated additional monthly revenue if your lead quality improved to 60% qualified — based on your current booking volume and close rate.`}
+    } else if(top==='close'&&qualified&&closeRate&&price){
+      const gain=qualified*((0.25-(closeRate/100)))*price;
+      if(gain>0){oppNum=Math.max(0,gain);oppDesc=`Estimated additional monthly revenue if your close rate reached 25% — without booking a single additional call.`}
+    }
+  }
+
+  // pillars
+  const pData=[
+    {name:'Lead Volume',s:volS,sl:volS==='green'?'Healthy':volS==='yellow'?'Watch This':'Constrained',val:cpbc?fmt(cpbc,0)+'/call':(booked!=null?booked+' calls/mo':'—')},
+    {name:'Lead Quality',s:qualS,sl:qualS==='green'?'Strong':qualS==='yellow'?'Needs Work':'Leaking',val:qualRate!=null?fN(qualRate,0)+'% qualified':'—'},
+    {name:'Conversion',s:closeS,sl:closeS==='green'?'Converting':closeS==='yellow'?'Below Target':'Low',val:closeRate!=null?fN(closeRate,1)+'% close rate':'—'}
+  ];
+  document.getElementById('ads-pillars').innerHTML=pData.map(p=>`<div class="pillar-card p-${p.s}"><div class="p-name">${p.name}</div><div class="p-status">${p.sl}</div><div class="p-val">${p.val}</div></div>`).join('');
+
+  // constraint block
+  document.getElementById('ads-cb').className=`cb an a3 ${pc.cls}`;
+  document.getElementById('ads-cb').innerHTML=`<div class="cb-icon">${pc.icon}</div><div class="cb-body"><div class="cb-label">Primary Constraint</div><div class="cb-title">${pc.title}</div><p class="cb-text">${pc.text}</p></div>`;
+
+  // opp card
+  const oc=document.getElementById('ads-opp');
+  if(oppNum&&oppNum>200){document.getElementById('ads-opp-num').textContent=fmt(oppNum,0)+'/mo';document.getElementById('ads-opp-desc').textContent=oppDesc;oc.classList.add('vis')}
+
+  // headline
+  const hls={vol:"Your Ads Aren't Generating Enough Pipeline",qual:"You Have a Lead Quality Problem",close:"Calls Are Booking But Not Closing"};
+  document.getElementById('ads-headline').textContent=allGood?'Your Machine Is Working — Pour Gas On It':hls[top];
+  document.getElementById('ads-sub').textContent=allGood?'All three pillars are in a healthy range. The next level is creative scale and entity diversity.':'Here\'s exactly where the leak is — and what to do about it.';
+
+  // table
+  const rows=[
+    {l:'Cost Per Booked Call',y:cpbc?fmt(cpbc,0):'—',t:fmt(maxCAC*0.45,0)+' ceiling',s:cpbc?(cpbc<=maxCAC*0.4?'good':cpbc<=maxCAC*0.7?'warn':'bad'):'neu'},
+    {l:'Cost Per Qualified Call',y:cpqc?fmt(cpqc,0):'—',t:fmt(maxCPQC,0)+' (⅓ of max CAC)',s:cpqc?(cpqc<=maxCPQC?'good':cpqc<=maxCPQC*1.5?'warn':'bad'):'neu'},
+    {l:'Lead Quality Rate',y:qualRate!=null?fN(qualRate,0)+'%':'—',t:'60%+ of booked',s:qualRate!=null?(qualRate>=60?'good':qualRate>=40?'warn':'bad'):'neu'},
+    {l:'Close Rate (Qualified)',y:closeRate!=null?fN(closeRate,1)+'%':'—',t:'25–40%',s:closeRate!=null?(closeRate>=25?'good':closeRate>=15?'warn':'bad'):'neu'},
+    {l:'Cost Per Acquired Client',y:cac?fmt(cac,0):'—',t:'≤ '+fmt(maxCAC,0),s:cac?(cac<=maxCAC?'good':cac<=maxCAC*1.5?'warn':'bad'):'neu'},
+    {l:'Max CAC Ceiling',y:fmt(maxCAC,0),t:'25% of offer price',s:'neu'},
+  ];
+  const dotC={good:'#22c97a',warn:'#f5c23a',bad:'#e8403e',neu:'#7b97b3'};
+  const stL={good:'On track',warn:'Watch this',bad:'Needs fix',neu:'—'};
+  document.getElementById('ads-tbody').innerHTML=rows.map(r=>`<tr><td>${r.l}</td><td class="td-${r.s}">${r.y}</td><td style="color:var(--g600);font-family:var(--ff-m);font-size:12px">${r.t}</td><td><span class="sdot" style="background:${dotC[r.s]}"></span>${stL[r.s]}</td></tr>`).join('');
+
+  hide('form-ads');show('results-ads');scrollTo_('results-ads');
+}
+
+/* ── ORGANIC AUDIT ── */
+function runOrganicAudit(){
+  const price=num('o-price'),revenue=num('o-revenue'),booked=num('o-booked'),closeRate=num('o-close');
+  if(!price){alert('Please enter your offer price.');return}
+
+  const clientsPerMonth=(revenue&&price)?revenue/price:null;
+  const impliedClose=(booked&&clientsPerMonth)?(clientsPerMonth/booked)*100:null;
+  const effectiveClose=closeRate||impliedClose||25;
+  const revenuePerCall=(revenue&&booked)?revenue/booked:null;
+
+  // ad projections — conservative model
+  const cplEst=Math.min(price*0.008,15);
+  const bookRate=0.25,qualRate=0.65,cr=effectiveClose/100;
+  function proj(spend){const l=spend/cplEst;const q=l*bookRate*qualRate;return q*cr*price}
+
+  const rev1500=proj(1500),rev3000=proj(3000),rev5000=proj(5000);
+  const oppNum=Math.round(rev3000);
+
+  // constraint
+  let orgCB;
+  if(!booked||booked<8){
+    orgCB={cls:'cb-red',icon:'📣',title:'Your #1 Ceiling Is Lead Volume',
+      text:`You're getting fewer than 8 sales calls per month from organic and referrals. At this volume, even a perfect close rate can't break past $50K/month. This is the classic organic ceiling — you've maxed out what word-of-mouth can predictably generate. A paid lead engine running $1,500–$3K/month in ad spend would add approximately ${fN(rev1500/price,0)}–${fN(rev3000/price,0)} qualified calls to your pipeline each month, creating a predictable and scalable path to your next revenue tier.`}
+  } else if(effectiveClose<20){
+    orgCB={cls:'cb-yellow',icon:'📞',title:'Fix Your Close Rate Before Deploying Ads',
+      text:`With a ${fN(effectiveClose,0)}% close rate, adding more leads through a paid ad engine would amplify the problem rather than solve it. Before scaling with ads, tighten your sales process. A 10-point improvement — from ${fN(effectiveClose,0)}% to ${fN(effectiveClose+10,0)}% — would add roughly ${fmt((booked||10)*0.1*price,0)}/month to your revenue with zero new leads. Build the conversion process first. Then ads become a multiplier on something that already works.`}
+  } else {
+    orgCB={cls:'cb-green',icon:'🚀',title:'Solid Foundation — Ads Are Your Multiplier',
+      text:`Your organic business has good fundamentals. The constraint is volume — there are only so many referrals and organic leads available each month. A paid lead engine runs alongside your organic pipeline, not in place of it. Coaches with your close rate typically see the fastest ROI when they launch ads because the conversion system is already working. The machine is ready — it just needs more fuel.`}
+  }
+
+  document.getElementById('org-headline').textContent=revenue?`You're at ${fmt(revenue,0)}/mo — Here's Your Ceiling`:"Here's What Your Business Is Missing";
+  document.getElementById('org-sub').textContent="Without a paid lead engine, you're capped by how many organic leads come in each month. Here's what a systematic ad strategy would add.";
+  document.getElementById('org-opp-num').textContent=fmt(oppNum,0)+'/mo';
+  document.getElementById('org-opp-desc').textContent=`Estimated additional monthly revenue from a $3,000/month ad budget — based on your offer price${closeRate?` and ${fN(closeRate,0)}% close rate`:''}.  This is what you're leaving behind every month without a paid lead engine.`;
+
+  document.getElementById('org-cb').className=`cb an a3 ${orgCB.cls}`;
+  document.getElementById('org-cb').innerHTML=`<div class="cb-icon">${orgCB.icon}</div><div class="cb-body"><div class="cb-label">Your Growth Constraint</div><div class="cb-title">${orgCB.title}</div><p class="cb-text">${orgCB.text}</p></div>`;
+
+  // projection rows
+  const pRows=[
+    {l:'Current (Organic Only)',v:revenue?fmt(revenue,0):'—',sub:'Referrals + organic only',hl:false},
+    {l:'+$1,500/mo Ad Spend',v:fmt(revenue?(revenue+rev1500):rev1500,0),sub:`+${fmt(rev1500,0)} from ads est.`,hl:false},
+    {l:'+$3,000/mo Ad Spend',v:fmt(revenue?(revenue+rev3000):rev3000,0),sub:`+${fmt(rev3000,0)} from ads est.`,hl:true},
+    {l:'+$5,000/mo Ad Spend',v:fmt(revenue?(revenue+rev5000):rev5000,0),sub:`+${fmt(rev5000,0)} from ads est.`,hl:false},
+  ];
+  document.getElementById('org-proj-rows').innerHTML=pRows.map(r=>`<div class="proj-row${r.hl?' hl':''}"><div class="proj-s">${r.l}</div><div class="proj-v"><div><span>${r.v}</span><span class="sub">${r.sub}</span></div></div></div>`).join('');
+
+  // baseline table
+  const bRows=[
+    {l:'Monthly Revenue',c:revenue?fmt(revenue,0):'—',n:'Organic + referral baseline'},
+    {l:'Booked Calls / Month',c:booked!=null?booked+' calls':'—',n:'From organic sources only'},
+    {l:'Close Rate',c:effectiveClose?fN(effectiveClose,0)+'%':'—',n:effectiveClose>=25?'✓ Healthy range':'Below 25% — address before scaling ads'},
+    {l:'Revenue Per Call',c:revenuePerCall?fmt(revenuePerCall,0):'—',n:'Revenue generated per booked call'},
+    {l:'Max CAC Ceiling',c:fmt(price*0.25,0),n:'25% of your '+fmt(price,0)+' offer price'},
+  ];
+  document.getElementById('org-tbody').innerHTML=bRows.map(r=>`<tr><td>${r.l}</td><td class="td-neu">${r.c}</td><td style="color:var(--g600);font-size:12px;font-family:var(--ff-b)">${r.n}</td></tr>`).join('');
+
+  hide('form-organic');show('results-organic');scrollTo_('results-organic');
+}
+
+/* ── RESET ── */
+function resetToStart(){
+  ['form-ads','form-organic','results-ads','results-organic'].forEach(hide);
+  ['card-yes','card-no'].forEach(id=>document.getElementById(id).classList.remove('selected'));
+  document.getElementById('ads-opp').classList.remove('vis');
+  ['a-price','a-spend','a-booked','a-qualified','a-close','o-price','o-revenue','o-booked','o-close'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter')return;
+  if(document.getElementById('form-ads').classList.contains('active'))runAdsAudit();
+  if(document.getElementById('form-organic').classList.contains('active'))runOrganicAudit();
+});
+</script>
+</body>
+</html>
