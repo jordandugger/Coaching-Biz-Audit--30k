@@ -7,12 +7,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Lora:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- TrustBox script -->
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<!-- End TrustBox script -->
+
 <style>
 :root{
   --navy:#1E3A5F;--navy-dark:#111e2e;--navy-card:#172840;--navy-mid:#1e3050;
   --orange:#E87722;--orange-lt:#f08c3a;--orange-glow:rgba(232,119,34,.18);
   --sky:#c8ddef;--sky-dim:#8faabf;--white:#ffffff;
-  --g400:#7b97b3;--g600:#445e78;
+  --g400:#7b97b3;--g600:#445e78;--g700:#2e4a63;
   --green:#22c97a;--green-bg:rgba(34,201,122,.10);
   --yellow:#f5c23a;--yellow-bg:rgba(245,194,58,.10);
   --red:#e8403e;--red-bg:rgba(232,64,62,.10);
@@ -44,9 +49,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .branch-card{background:var(--navy-card);border:2px solid rgba(255,255,255,.08);border-radius:var(--r);padding:28px 24px;cursor:pointer;transition:border-color var(--t),transform var(--t),background var(--t);position:relative;overflow:hidden;text-align:center}
 .branch-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,var(--orange-glow),transparent 70%);opacity:0;transition:opacity var(--t);pointer-events:none}
 .branch-card:hover{border-color:var(--orange);transform:translateY(-3px)}
-.branch-card:hover::before{opacity:1}
+.branch-card:hover::before,.branch-card.selected::before{opacity:1}
 .branch-card.selected{border-color:var(--orange);background:linear-gradient(160deg,rgba(232,119,34,.1),var(--navy-card))}
-.branch-card.selected::before{opacity:1}
 .bc-icon{font-size:38px;margin-bottom:14px;display:block;transition:transform var(--t)}
 .branch-card:hover .bc-icon{transform:scale(1.08)}
 .bc-title{font-family:var(--ff-d);font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.04em;color:var(--white);margin-bottom:8px;line-height:1.1}
@@ -146,7 +150,36 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
 .proj-v span{font-family:var(--ff-d);font-weight:800;font-size:24px;color:var(--white)}
 .proj-v .sub{font-family:var(--ff-b);font-size:12px;color:var(--sky-dim);display:block;line-height:1.4;margin-top:2px}
 
-/* CTA */
+/* ── PODCAST SECTION ── */
+.podcast-section{margin-bottom:22px}
+.ps-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.ps-logo{width:52px;height:52px;border-radius:10px;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,.1)}
+.ps-logo-placeholder{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--navy-mid),var(--navy-card));border:2px solid rgba(232,119,34,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.ps-header-text{}
+.ps-eyebrow{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:3px}
+.ps-title{font-family:var(--ff-d);font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:.03em;color:var(--white)}
+
+.podcast-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.podcast-card{background:var(--navy-card);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:18px 20px;display:flex;gap:16px;align-items:flex-start;transition:border-color var(--t)}
+.podcast-card:hover{border-color:rgba(232,119,34,.3)}
+.pc-num{font-family:var(--ff-d);font-weight:900;font-size:28px;color:rgba(232,119,34,.25);line-height:1;flex-shrink:0;min-width:36px}
+.pc-body{flex:1;min-width:0}
+.pc-ep{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-lt);margin-bottom:4px}
+.pc-title{font-family:var(--ff-d);font-weight:800;font-size:17px;letter-spacing:.02em;color:var(--white);line-height:1.2;margin-bottom:10px}
+.pc-links{display:flex;gap:8px;flex-wrap:wrap}
+.pc-link{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--sky);text-decoration:none;font-family:var(--ff-d);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:4px;transition:background var(--t),border-color var(--t),color var(--t)}
+.pc-link:hover{background:rgba(232,119,34,.15);border-color:rgba(232,119,34,.4);color:var(--white)}
+.pc-link svg{width:14px;height:14px;flex-shrink:0}
+
+/* YouTube embed */
+.yt-section{margin-bottom:22px}
+.yt-label{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--g400);margin-bottom:10px}
+.yt-case-label{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.yt-case-title{font-family:var(--ff-d);font-weight:800;font-size:16px;color:var(--white);letter-spacing:.02em;margin-bottom:12px;line-height:1.2}
+.yt-wrap{position:relative;padding-bottom:56.25%;height:0;border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.yt-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+/* CTA block */
 .cta-block{background:linear-gradient(145deg,var(--navy-mid) 0%,var(--navy-card) 100%);border:1px solid rgba(232,119,34,.2);border-radius:12px;padding:42px 36px;text-align:center;position:relative;overflow:hidden}
 .cta-block::after{content:'';position:absolute;bottom:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(232,119,34,.12) 0%,transparent 65%);pointer-events:none}
 .cta-eyebrow{font-family:var(--ff-d);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
@@ -156,9 +189,17 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
 .cta-link:hover{background:var(--orange-lt);transform:translateY(-2px);box-shadow:0 8px 36px rgba(232,119,34,.5)}
 .cta-link .arrow{transition:transform var(--t)}
 .cta-link:hover .arrow{transform:translateX(4px)}
+
+/* Trustpilot wrapper */
+.tp-wrap{margin:20px 0 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.07)}
+
 .cta-note{margin-top:14px;font-family:var(--ff-b);font-size:12px;color:var(--g600);font-style:italic}
+
 .reset-btn{display:block;text-align:center;margin-top:26px;font-family:var(--ff-b);font-size:13px;color:var(--g600);cursor:pointer;background:none;border:none;text-decoration:underline}
 .reset-btn:hover{color:var(--g400)}
+
+/* divider */
+.section-divider{height:1px;background:rgba(255,255,255,.06);margin:0 0 22px}
 
 /* Footer */
 .footer{background:var(--navy-dark);border-top:1px solid rgba(255,255,255,.05);padding:22px;text-align:center}
@@ -168,7 +209,7 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
 /* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .an{animation:fadeUp .4s ease both}
-.a1{animation-delay:.04s}.a2{animation-delay:.12s}.a3{animation-delay:.22s}.a4{animation-delay:.32s}.a5{animation-delay:.44s}
+.a1{animation-delay:.04s}.a2{animation-delay:.12s}.a3{animation-delay:.22s}.a4{animation-delay:.32s}.a5{animation-delay:.44s}.a6{animation-delay:.54s}.a7{animation-delay:.64s}
 </style>
 </head>
 <body>
@@ -204,13 +245,12 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
   </div>
 </div>
 
-<!-- FORM: ADS PATH -->
+<!-- FORM: ADS -->
 <div class="form-section" id="form-ads">
   <div class="wrap">
     <div class="fh-step">Step 2 of 2 — Running Ads</div>
     <div class="fh-title">Your Ad Metrics</div>
     <p class="fh-desc">Use your last 30 days from Meta Ads Manager. Round numbers are fine — this is a diagnostic, not an accounting report.</p>
-
     <div class="ig-grid">
       <div class="input-group">
         <div class="ig-top"><div class="ig-label">Offer Price</div></div>
@@ -223,7 +263,6 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
         <div class="ig-hint">Total spent on Meta ads last month</div>
       </div>
     </div>
-
     <div class="ig-grid">
       <div class="input-group">
         <div class="ig-top"><div class="ig-label">Booked Calls / Month</div></div>
@@ -236,7 +275,6 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
         <div class="ig-hint">Calls that were genuinely a good fit</div>
       </div>
     </div>
-
     <div class="ig-stack">
       <div class="input-group">
         <div class="ig-top"><div class="ig-label">Close Rate on Qualified Calls</div><span class="ig-bench">Target: 25–40%</span></div>
@@ -244,19 +282,17 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
         <div class="ig-hint">% of qualified calls that enrolled as paying clients</div>
       </div>
     </div>
-
     <button class="run-btn pulse" onclick="runAdsAudit()">Show My Constraint <span class="arrow">→</span></button>
     <button class="back-link" onclick="resetToStart()">← Change my answer</button>
   </div>
 </div>
 
-<!-- FORM: ORGANIC PATH -->
+<!-- FORM: ORGANIC -->
 <div class="form-section" id="form-organic">
   <div class="wrap">
     <div class="fh-step">Step 2 of 2 — Organic Only</div>
     <div class="fh-title">Your Current Numbers</div>
     <p class="fh-desc">Tell us what your business looks like right now — we'll model exactly what a paid lead engine would add to your revenue.</p>
-
     <div class="ig-grid">
       <div class="input-group">
         <div class="ig-top"><div class="ig-label">Offer Price</div></div>
@@ -269,7 +305,6 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
         <div class="ig-hint">Your average monthly revenue right now</div>
       </div>
     </div>
-
     <div class="ig-grid">
       <div class="input-group">
         <div class="ig-top"><div class="ig-label">Booked Calls / Month</div></div>
@@ -282,73 +317,227 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
         <div class="ig-hint">% of calls that become paying clients</div>
       </div>
     </div>
-
     <button class="run-btn pulse" onclick="runOrganicAudit()">Show My Opportunity <span class="arrow">→</span></button>
     <button class="back-link" onclick="resetToStart()">← Change my answer</button>
   </div>
 </div>
 
-<!-- RESULTS: ADS -->
+<!-- ════════════════════════════════
+     RESULTS: ADS PATH
+════════════════════════════════ -->
 <div class="results-section" id="results-ads">
   <div class="wrap">
+
     <div class="score-header an a1">
       <div class="sh-eyebrow">Your Audit Results — Running Ads</div>
       <div class="sh-headline" id="ads-headline">—</div>
       <p class="sh-sub" id="ads-sub">—</p>
     </div>
+
     <div class="pillars an a2" id="ads-pillars"></div>
     <div class="cb an a3" id="ads-cb"></div>
+
     <div class="opp-card an a3" id="ads-opp">
       <div class="opp-eyebrow">Estimated Monthly Revenue Left on the Table</div>
       <div class="opp-number" id="ads-opp-num">—</div>
       <p class="opp-desc" id="ads-opp-desc">—</p>
     </div>
+
     <div class="tcard an a4">
       <div class="tcard-hdr">Your Numbers vs. Targets</div>
       <table><thead><tr><th>Metric</th><th>Yours</th><th>Target</th><th>Status</th></tr></thead>
       <tbody id="ads-tbody"></tbody></table>
     </div>
-    <div class="cta-block an a5">
+
+    <div class="section-divider"></div>
+
+    <!-- PODCAST RECOMMENDATIONS — ADS PATH -->
+    <div class="podcast-section an a5">
+      <div class="ps-header">
+        <div class="ps-logo-placeholder">🎙️</div>
+        <div class="ps-header-text">
+          <div class="ps-eyebrow">While You Wait — Listen In</div>
+          <div class="ps-title">The Fit Biz Podcast</div>
+        </div>
+      </div>
+      <div class="podcast-cards">
+        <div class="podcast-card">
+          <div class="pc-num">668</div>
+          <div class="pc-body">
+            <div class="pc-ep">Episode 668</div>
+            <div class="pc-title">What Type of Ads Should You Be Running? And Exactly How to Set It Up</div>
+            <div class="pc-links">
+              <a href="https://podcasts.apple.com/us/podcast/the-fitness-business-podcast-with-erin-dimond/id1431786884?i=1000723425331" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c2.071 0 3.938.8 5.328 2.1L15.9 8.028A5.484 5.484 0 0012 6.5a5.5 5.5 0 00-5.5 5.5 5.5 5.5 0 005.5 5.5 5.484 5.484 0 003.9-1.528l1.428 1.928A7.459 7.459 0 0112 19.5a7.5 7.5 0 01-7.5-7.5A7.5 7.5 0 0112 4.5zm0 2.5a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+                Apple Podcasts
+              </a>
+              <a href="https://open.spotify.com/episode/5RkCePLenH81FtFHY3nC10?si=ac7447a7f92d4a8c" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="podcast-card">
+          <div class="pc-num">693</div>
+          <div class="pc-body">
+            <div class="pc-ep">Episode 693</div>
+            <div class="pc-title">How We Scaled T4E Systems to $150K/mo + Exited (And How You Can Swipe It)</div>
+            <div class="pc-links">
+              <a href="https://podcasts.apple.com/us/podcast/the-fitness-business-podcast-with-erin-dimond/id1431786884?i=1000737573058" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c2.071 0 3.938.8 5.328 2.1L15.9 8.028A5.484 5.484 0 0012 6.5a5.5 5.5 0 00-5.5 5.5 5.5 5.5 0 005.5 5.5 5.484 5.484 0 003.9-1.528l1.428 1.928A7.459 7.459 0 0112 19.5a7.5 7.5 0 01-7.5-7.5A7.5 7.5 0 0112 4.5zm0 2.5a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+                Apple Podcasts
+              </a>
+              <a href="https://open.spotify.com/episode/0HL4CVBk0Vi2d6DsxEVigS?si=9011341244c34254" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE CASE STUDY — ADS PATH -->
+    <div class="yt-section an a5">
+      <div class="yt-case-label">Client Case Study</div>
+      <div class="yt-case-title">EP 666 — From Struggling $69/Month App Sales to Predictable $15K Months: How Paul Built Systems That Let His Wife Quit Her Job</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube.com/embed/h4C0ObBvWyw?si=fZYxo_0tsYWKgTiC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- CTA — ADS PATH -->
+    <div class="cta-block an a6">
       <div class="cta-eyebrow">Your Next Step</div>
       <div class="cta-title">Let's Fix This Together</div>
       <p class="cta-desc">Watch the 3-minute video to learn how we'll help you unlock an extra $30K/month in your coaching business — and to see if you qualify for a one-on-one business audit call.</p>
       <a href="https://www.impactcoachacademy.com/community-funnel?el=podcast" target="_blank" class="cta-link">Watch the Video &amp; See If You Qualify <span class="arrow">→</span></a>
+      <div class="tp-wrap">
+        <!-- TrustBox widget - Horizontal -->
+        <div class="trustpilot-widget" data-locale="en-US" data-template-id="5406e65db0d04a09e042d5fc" data-businessunit-id="6438440785b039aeec26ef27" data-style-height="28px" data-style-width="100%" data-token="b8ceec05-d2f0-4aa1-907c-e02dcb9779f6">
+          <a href="https://www.trustpilot.com/review/impactcoachacademy.com" target="_blank" rel="noopener">Trustpilot</a>
+        </div>
+        <!-- End TrustBox widget -->
+      </div>
       <p class="cta-note">We'll review your numbers, your math, and show you exactly what's in the way.</p>
     </div>
+
     <button class="reset-btn" onclick="resetToStart()">← Start over with different numbers</button>
   </div>
 </div>
 
-<!-- RESULTS: ORGANIC -->
+<!-- ════════════════════════════════
+     RESULTS: ORGANIC PATH
+════════════════════════════════ -->
 <div class="results-section" id="results-organic">
   <div class="wrap">
+
     <div class="score-header an a1">
       <div class="sh-eyebrow">Your Opportunity Assessment — Organic Only</div>
       <div class="sh-headline" id="org-headline">—</div>
       <p class="sh-sub" id="org-sub">—</p>
     </div>
+
     <div class="opp-card vis an a2" id="org-opp">
       <div class="opp-eyebrow">Monthly Revenue You're Leaving Behind Without Ads</div>
       <div class="opp-number" id="org-opp-num">—</div>
       <p class="opp-desc" id="org-opp-desc">—</p>
     </div>
+
     <div class="cb an a3" id="org-cb"></div>
+
     <div class="tcard an a4" id="org-proj-card">
       <div class="tcard-hdr">What a Paid Lead Engine Would Add</div>
       <div id="org-proj-rows"></div>
     </div>
+
     <div class="tcard an a4">
       <div class="tcard-hdr">Your Current Baseline</div>
       <table><thead><tr><th>Metric</th><th>Current</th><th>Note</th></tr></thead>
       <tbody id="org-tbody"></tbody></table>
     </div>
-    <div class="cta-block an a5">
+
+    <div class="section-divider"></div>
+
+    <!-- PODCAST RECOMMENDATIONS — ORGANIC PATH -->
+    <div class="podcast-section an a5">
+      <div class="ps-header">
+        <div class="ps-logo-placeholder">🎙️</div>
+        <div class="ps-header-text">
+          <div class="ps-eyebrow">While You Wait — Listen In</div>
+          <div class="ps-title">The Fit Biz Podcast</div>
+        </div>
+      </div>
+      <div class="podcast-cards">
+        <div class="podcast-card">
+          <div class="pc-num">677</div>
+          <div class="pc-body">
+            <div class="pc-ep">Episode 677</div>
+            <div class="pc-title">Don't Run Ads or Post Content (Do This Instead)</div>
+            <div class="pc-links">
+              <a href="https://podcasts.apple.com/us/podcast/the-fitness-business-podcast-with-erin-dimond/id1431786884?i=1000728382796" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c2.071 0 3.938.8 5.328 2.1L15.9 8.028A5.484 5.484 0 0012 6.5a5.5 5.5 0 00-5.5 5.5 5.5 5.5 0 005.5 5.5 5.484 5.484 0 003.9-1.528l1.428 1.928A7.459 7.459 0 0112 19.5a7.5 7.5 0 01-7.5-7.5A7.5 7.5 0 0112 4.5zm0 2.5a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+                Apple Podcasts
+              </a>
+              <a href="https://open.spotify.com/episode/3PGwIjDtVY9SjxjHHLzqxm?si=9d4a5be407c34f5a" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="podcast-card">
+          <div class="pc-num">706</div>
+          <div class="pc-body">
+            <div class="pc-ep">Episode 706</div>
+            <div class="pc-title">The 5 Types of Content the Algorithm Is Pushing Right Now (And How to Get Seen by 10X More People)</div>
+            <div class="pc-links">
+              <a href="https://podcasts.apple.com/us/podcast/the-fitness-business-podcast-with-erin-dimond/id1431786884?i=1000743796950" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c2.071 0 3.938.8 5.328 2.1L15.9 8.028A5.484 5.484 0 0012 6.5a5.5 5.5 0 00-5.5 5.5 5.5 5.5 0 005.5 5.5 5.484 5.484 0 003.9-1.528l1.428 1.928A7.459 7.459 0 0112 19.5a7.5 7.5 0 01-7.5-7.5A7.5 7.5 0 0112 4.5zm0 2.5a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+                Apple Podcasts
+              </a>
+              <a href="https://open.spotify.com/episode/0OW4o1fa7Vn2IMZxiYtPb2?si=67c9dfe513054901" target="_blank" class="pc-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE CASE STUDY — ORGANIC PATH -->
+    <div class="yt-section an a5">
+      <div class="yt-case-label">Client Case Study</div>
+      <div class="yt-case-title">EP 710 — $500/Month to $680K/Year: How Camden, a College Dropout, Built a Coaching Business Without Ads, a Big Following, or Burning Out</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube.com/embed/9EnYSalEzUg?si=CXy_RpRws7RVgYJP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- CTA — ORGANIC PATH -->
+    <div class="cta-block an a6">
       <div class="cta-eyebrow">Your Next Step</div>
       <div class="cta-title">You're Ready for a Paid Lead Engine</div>
       <p class="cta-desc">Watch the 3-minute video to learn how we'll help you unlock an extra $30K/month in your coaching business — and to see if you qualify for a one-on-one business audit call.</p>
       <a href="https://www.impactcoachacademy.com/community-funnel?el=podcast" target="_blank" class="cta-link">Watch the Video &amp; See If You Qualify <span class="arrow">→</span></a>
+      <div class="tp-wrap">
+        <!-- TrustBox widget - Horizontal -->
+        <div class="trustpilot-widget" data-locale="en-US" data-template-id="5406e65db0d04a09e042d5fc" data-businessunit-id="6438440785b039aeec26ef27" data-style-height="28px" data-style-width="100%" data-token="b8ceec05-d2f0-4aa1-907c-e02dcb9779f6">
+          <a href="https://www.trustpilot.com/review/impactcoachacademy.com" target="_blank" rel="noopener">Trustpilot</a>
+        </div>
+        <!-- End TrustBox widget -->
+      </div>
       <p class="cta-note">We'll review your numbers, your math, and show you exactly what's in the way.</p>
     </div>
+
     <button class="reset-btn" onclick="resetToStart()">← Start over with different numbers</button>
   </div>
 </div>
@@ -359,7 +548,6 @@ input[type="number"]::placeholder{color:rgba(255,255,255,.18)}
 </div>
 
 <script>
-/* ── utils ── */
 function fmt(n,d=0){if(n==null||isNaN(n))return'—';return'$'+n.toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
 function fN(n,d=1){if(n==null||isNaN(n))return'—';return n.toFixed(d)}
 function num(id){const v=parseFloat(document.getElementById(id).value);return isNaN(v)?null:v}
@@ -376,19 +564,15 @@ function selectBranch(t){
   setTimeout(()=>document.getElementById(t==='ads'?'form-ads':'form-organic').scrollIntoView({behavior:'smooth',block:'start'}),80);
 }
 
-/* ── ADS AUDIT ── */
 function runAdsAudit(){
   const price=num('a-price'),spend=num('a-spend'),booked=num('a-booked'),qualified=num('a-qualified'),closeRate=num('a-close');
   if(!price){alert('Please enter your offer price.');return}
-
-  const maxCAC=price*0.25, maxCPQC=maxCAC/3;
+  const maxCAC=price*0.25,maxCPQC=maxCAC/3;
   const cpbc=(spend&&booked)?spend/booked:null;
   const cpqc=(spend&&qualified)?spend/qualified:null;
   const qualRate=(booked&&qualified)?(qualified/booked)*100:null;
   const newClients=(qualified&&closeRate)?qualified*(closeRate/100):null;
   const cac=(newClients&&newClients>0&&spend)?spend/newClients:null;
-
-  // pillar statuses
   let volS='yellow';
   if(cpbc!=null){volS=cpbc<=maxCAC*0.4?'green':cpbc<=maxCAC*0.7?'yellow':'red'}
   else if(booked!=null){volS=booked>=15?'green':booked>=8?'yellow':'red'}
@@ -396,60 +580,34 @@ function runAdsAudit(){
   if(qualRate!=null){qualS=qualRate>=60?'green':qualRate>=40?'yellow':'red'}
   let closeS='yellow';
   if(closeRate!=null){closeS=closeRate>=25?'green':closeRate>=15?'yellow':'red'}
-
-  // top constraint
-  const w={vol:volS==='red'?3:volS==='yellow'?2:0, qual:qualS==='red'?3:qualS==='yellow'?2:0, close:closeS==='red'?3:closeS==='yellow'?2:0};
+  const w={vol:volS==='red'?3:volS==='yellow'?2:0,qual:qualS==='red'?3:qualS==='yellow'?2:0,close:closeS==='red'?3:closeS==='yellow'?2:0};
   const top=Object.entries(w).sort((a,b)=>b[1]-a[1])[0][0];
   const allGood=w.vol===0&&w.qual===0&&w.close===0;
-
   const cbMap={
-    vol:{cls:'cb-red',icon:'📉',title:"Lead Volume — Your Spend Isn't Generating Enough Pipeline",
-      text:`Your cost per booked call${cpbc?` (${fmt(cpbc,0)})`:''}${maxCAC?` is high relative to your ${fmt(maxCAC,0)} max CAC`:''}.  You're not getting enough calls from your current spend to build predictable revenue at your offer price. This is almost always a creative problem — not a budget problem. More spend on a broken ad machine just accelerates the leak. Fix the hook diversity and entity structure first, then scale budget.`},
-    qual:{cls:'cb-yellow',icon:'🎯',title:"Lead Quality — The Wrong People Are Booking Your Calls",
-      text:`Only ${qualRate!=null?fN(qualRate,0)+'%':'a portion'} of your booked calls are qualifying. This traces back to your ad's promise vs. the reality of your offer. Your creative is casting too wide a net. The fix: tighten the call-out in your ads, add 1–2 pre-call qualification questions to your booking form, and make your CTA more specific about who this is for. Better leads close at higher rates without touching your sales process.`},
-    close:{cls:'cb-yellow',icon:'📞',title:"Close Rate — Qualified Calls Aren't Converting",
-      text:`A ${closeRate!=null?fN(closeRate,1)+'%':'low'} close rate on qualified calls means the interest is there but something is breaking on the call. Common causes: objections not being addressed before they arise, weak value demonstration, or a gap between what the ad promises and what the call delivers. A 10-point improvement in close rate on your current qualified volume would add approximately ${qualified&&price?fmt(qualified*0.1*price,0):'significant revenue'} per month — without booking a single additional call.`}
+    vol:{cls:'cb-red',icon:'📉',title:"Lead Volume — Your Spend Isn't Generating Enough Pipeline",text:`Your cost per booked call${cpbc?` (${fmt(cpbc,0)})`:''}${maxCAC?` is high relative to your ${fmt(maxCAC,0)} max CAC`:''}.  You're not getting enough calls from your current spend to build predictable revenue. This is almost always a creative problem — not a budget problem. More spend on a broken ad machine just accelerates the leak. Fix the hook diversity and entity structure first, then scale budget.`},
+    qual:{cls:'cb-yellow',icon:'🎯',title:"Lead Quality — The Wrong People Are Booking Your Calls",text:`Only ${qualRate!=null?fN(qualRate,0)+'%':'a portion'} of your booked calls are qualifying. This traces back to your ad's promise vs. the reality of your offer. Your creative is casting too wide a net. The fix: tighten the call-out in your ads, add 1–2 pre-call qualification questions to your booking form, and make your CTA more specific about who this is for. Better leads close at higher rates without touching your sales process.`},
+    close:{cls:'cb-yellow',icon:'📞',title:"Close Rate — Qualified Calls Aren't Converting",text:`A ${closeRate!=null?fN(closeRate,1)+'%':'low'} close rate on qualified calls means the interest is there but something is breaking on the call. Common causes: objections not addressed before they arise, weak value demonstration, or a gap between what the ad promises and what the call delivers. A 10-point improvement in close rate on your current qualified volume would add approximately ${qualified&&price?fmt(qualified*0.1*price,0):'significant revenue'} per month — without booking a single additional call.`}
   };
-
   const pc=allGood?{cls:'cb-green',icon:'✅',title:"Your Core Metrics Are Healthy — Time to Scale Creative",text:"Your lead volume, lead quality, and close rate are all in healthy ranges. The constraint now is creative output and entity diversity. Most coaches at this stage are under-producing new ad concepts relative to their budget. The 70/30 rule: 70% of budget on proven creative, 30% on testing new hooks and formats weekly. Give the algorithm more to work with and watch your CPCs drop."}:cbMap[top];
-
-  // opportunity calc
   let oppNum=null,oppDesc='';
   if(!allGood){
-    if(top==='vol'&&cpbc!=null&&maxCAC){
-      const better=spend/((cpbc*0.6));const gain=(better-(booked||0))*(((closeRate||25)/100)*0.65)*price;
-      if(gain>0){oppNum=gain;oppDesc=`Estimated additional monthly revenue if your cost per booked call improved by 40% — based on your current spend of ${fmt(spend,0)} and offer price of ${fmt(price,0)}.`}
-    } else if(top==='qual'&&qualRate!=null&&booked&&closeRate&&price){
-      const betterQ=booked*0.60;const gain=(betterQ-(qualified||0))*(closeRate/100)*price;
-      if(gain>0){oppNum=gain;oppDesc=`Estimated additional monthly revenue if your lead quality improved to 60% qualified — based on your current booking volume and close rate.`}
-    } else if(top==='close'&&qualified&&closeRate&&price){
-      const gain=qualified*((0.25-(closeRate/100)))*price;
-      if(gain>0){oppNum=Math.max(0,gain);oppDesc=`Estimated additional monthly revenue if your close rate reached 25% — without booking a single additional call.`}
-    }
+    if(top==='vol'&&cpbc!=null&&maxCAC){const gain=(spend/((cpbc*0.6))-(booked||0))*(((closeRate||25)/100)*0.65)*price;if(gain>0){oppNum=gain;oppDesc=`Estimated additional monthly revenue if your cost per booked call improved by 40% — based on your current spend of ${fmt(spend,0)} and offer price of ${fmt(price,0)}.`}}
+    else if(top==='qual'&&qualRate!=null&&booked&&closeRate&&price){const gain=(booked*0.60-(qualified||0))*(closeRate/100)*price;if(gain>0){oppNum=gain;oppDesc=`Estimated additional monthly revenue if your lead quality improved to 60% qualified — based on your current booking volume and close rate.`}}
+    else if(top==='close'&&qualified&&closeRate&&price){const gain=qualified*((0.25-(closeRate/100)))*price;if(gain>0){oppNum=Math.max(0,gain);oppDesc=`Estimated additional monthly revenue if your close rate reached 25% — without booking a single additional call.`}}
   }
-
-  // pillars
   const pData=[
     {name:'Lead Volume',s:volS,sl:volS==='green'?'Healthy':volS==='yellow'?'Watch This':'Constrained',val:cpbc?fmt(cpbc,0)+'/call':(booked!=null?booked+' calls/mo':'—')},
     {name:'Lead Quality',s:qualS,sl:qualS==='green'?'Strong':qualS==='yellow'?'Needs Work':'Leaking',val:qualRate!=null?fN(qualRate,0)+'% qualified':'—'},
     {name:'Conversion',s:closeS,sl:closeS==='green'?'Converting':closeS==='yellow'?'Below Target':'Low',val:closeRate!=null?fN(closeRate,1)+'% close rate':'—'}
   ];
   document.getElementById('ads-pillars').innerHTML=pData.map(p=>`<div class="pillar-card p-${p.s}"><div class="p-name">${p.name}</div><div class="p-status">${p.sl}</div><div class="p-val">${p.val}</div></div>`).join('');
-
-  // constraint block
   document.getElementById('ads-cb').className=`cb an a3 ${pc.cls}`;
   document.getElementById('ads-cb').innerHTML=`<div class="cb-icon">${pc.icon}</div><div class="cb-body"><div class="cb-label">Primary Constraint</div><div class="cb-title">${pc.title}</div><p class="cb-text">${pc.text}</p></div>`;
-
-  // opp card
   const oc=document.getElementById('ads-opp');
   if(oppNum&&oppNum>200){document.getElementById('ads-opp-num').textContent=fmt(oppNum,0)+'/mo';document.getElementById('ads-opp-desc').textContent=oppDesc;oc.classList.add('vis')}
-
-  // headline
   const hls={vol:"Your Ads Aren't Generating Enough Pipeline",qual:"You Have a Lead Quality Problem",close:"Calls Are Booking But Not Closing"};
   document.getElementById('ads-headline').textContent=allGood?'Your Machine Is Working — Pour Gas On It':hls[top];
   document.getElementById('ads-sub').textContent=allGood?'All three pillars are in a healthy range. The next level is creative scale and entity diversity.':'Here\'s exactly where the leak is — and what to do about it.';
-
-  // table
   const rows=[
     {l:'Cost Per Booked Call',y:cpbc?fmt(cpbc,0):'—',t:fmt(maxCAC*0.45,0)+' ceiling',s:cpbc?(cpbc<=maxCAC*0.4?'good':cpbc<=maxCAC*0.7?'warn':'bad'):'neu'},
     {l:'Cost Per Qualified Call',y:cpqc?fmt(cpqc,0):'—',t:fmt(maxCPQC,0)+' (⅓ of max CAC)',s:cpqc?(cpqc<=maxCPQC?'good':cpqc<=maxCPQC*1.5?'warn':'bad'):'neu'},
@@ -461,50 +619,30 @@ function runAdsAudit(){
   const dotC={good:'#22c97a',warn:'#f5c23a',bad:'#e8403e',neu:'#7b97b3'};
   const stL={good:'On track',warn:'Watch this',bad:'Needs fix',neu:'—'};
   document.getElementById('ads-tbody').innerHTML=rows.map(r=>`<tr><td>${r.l}</td><td class="td-${r.s}">${r.y}</td><td style="color:var(--g600);font-family:var(--ff-m);font-size:12px">${r.t}</td><td><span class="sdot" style="background:${dotC[r.s]}"></span>${stL[r.s]}</td></tr>`).join('');
-
   hide('form-ads');show('results-ads');scrollTo_('results-ads');
 }
 
-/* ── ORGANIC AUDIT ── */
 function runOrganicAudit(){
   const price=num('o-price'),revenue=num('o-revenue'),booked=num('o-booked'),closeRate=num('o-close');
   if(!price){alert('Please enter your offer price.');return}
-
   const clientsPerMonth=(revenue&&price)?revenue/price:null;
   const impliedClose=(booked&&clientsPerMonth)?(clientsPerMonth/booked)*100:null;
   const effectiveClose=closeRate||impliedClose||25;
   const revenuePerCall=(revenue&&booked)?revenue/booked:null;
-
-  // ad projections — conservative model
   const cplEst=Math.min(price*0.008,15);
   const bookRate=0.25,qualRate=0.65,cr=effectiveClose/100;
-  function proj(spend){const l=spend/cplEst;const q=l*bookRate*qualRate;return q*cr*price}
-
+  function proj(spend){return(spend/cplEst)*bookRate*qualRate*cr*price}
   const rev1500=proj(1500),rev3000=proj(3000),rev5000=proj(5000);
-  const oppNum=Math.round(rev3000);
-
-  // constraint
   let orgCB;
-  if(!booked||booked<8){
-    orgCB={cls:'cb-red',icon:'📣',title:'Your #1 Ceiling Is Lead Volume',
-      text:`You're getting fewer than 8 sales calls per month from organic and referrals. At this volume, even a perfect close rate can't break past $50K/month. This is the classic organic ceiling — you've maxed out what word-of-mouth can predictably generate. A paid lead engine running $1,500–$3K/month in ad spend would add approximately ${fN(rev1500/price,0)}–${fN(rev3000/price,0)} qualified calls to your pipeline each month, creating a predictable and scalable path to your next revenue tier.`}
-  } else if(effectiveClose<20){
-    orgCB={cls:'cb-yellow',icon:'📞',title:'Fix Your Close Rate Before Deploying Ads',
-      text:`With a ${fN(effectiveClose,0)}% close rate, adding more leads through a paid ad engine would amplify the problem rather than solve it. Before scaling with ads, tighten your sales process. A 10-point improvement — from ${fN(effectiveClose,0)}% to ${fN(effectiveClose+10,0)}% — would add roughly ${fmt((booked||10)*0.1*price,0)}/month to your revenue with zero new leads. Build the conversion process first. Then ads become a multiplier on something that already works.`}
-  } else {
-    orgCB={cls:'cb-green',icon:'🚀',title:'Solid Foundation — Ads Are Your Multiplier',
-      text:`Your organic business has good fundamentals. The constraint is volume — there are only so many referrals and organic leads available each month. A paid lead engine runs alongside your organic pipeline, not in place of it. Coaches with your close rate typically see the fastest ROI when they launch ads because the conversion system is already working. The machine is ready — it just needs more fuel.`}
-  }
-
+  if(!booked||booked<8){orgCB={cls:'cb-red',icon:'📣',title:'Your #1 Ceiling Is Lead Volume',text:`You're getting fewer than 8 sales calls per month from organic and referrals. At this volume, even a perfect close rate can't break past $50K/month. This is the classic organic ceiling — you've maxed out what word-of-mouth can predictably generate. A paid lead engine running $1,500–$3K/month in ad spend would add approximately ${fN(rev1500/price,0)}–${fN(rev3000/price,0)} qualified calls to your pipeline each month, creating a predictable and scalable path to your next revenue tier.`}}
+  else if(effectiveClose<20){orgCB={cls:'cb-yellow',icon:'📞',title:'Fix Your Close Rate Before Deploying Ads',text:`With a ${fN(effectiveClose,0)}% close rate, adding more leads through a paid ad engine would amplify the problem rather than solve it. Before scaling with ads, tighten your sales process. A 10-point improvement — from ${fN(effectiveClose,0)}% to ${fN(effectiveClose+10,0)}% — would add roughly ${fmt((booked||10)*0.1*price,0)}/month to your revenue with zero new leads. Build the conversion process first. Then ads become a multiplier on something that already works.`}}
+  else{orgCB={cls:'cb-green',icon:'🚀',title:'Solid Foundation — Ads Are Your Multiplier',text:`Your organic business has good fundamentals. The constraint is volume — there are only so many referrals and organic leads available each month. A paid lead engine runs alongside your organic pipeline, not in place of it. Coaches with your close rate typically see the fastest ROI when they launch ads because the conversion system is already working. The machine is ready — it just needs more fuel.`}}
   document.getElementById('org-headline').textContent=revenue?`You're at ${fmt(revenue,0)}/mo — Here's Your Ceiling`:"Here's What Your Business Is Missing";
   document.getElementById('org-sub').textContent="Without a paid lead engine, you're capped by how many organic leads come in each month. Here's what a systematic ad strategy would add.";
-  document.getElementById('org-opp-num').textContent=fmt(oppNum,0)+'/mo';
+  document.getElementById('org-opp-num').textContent=fmt(Math.round(rev3000),0)+'/mo';
   document.getElementById('org-opp-desc').textContent=`Estimated additional monthly revenue from a $3,000/month ad budget — based on your offer price${closeRate?` and ${fN(closeRate,0)}% close rate`:''}.  This is what you're leaving behind every month without a paid lead engine.`;
-
   document.getElementById('org-cb').className=`cb an a3 ${orgCB.cls}`;
   document.getElementById('org-cb').innerHTML=`<div class="cb-icon">${orgCB.icon}</div><div class="cb-body"><div class="cb-label">Your Growth Constraint</div><div class="cb-title">${orgCB.title}</div><p class="cb-text">${orgCB.text}</p></div>`;
-
-  // projection rows
   const pRows=[
     {l:'Current (Organic Only)',v:revenue?fmt(revenue,0):'—',sub:'Referrals + organic only',hl:false},
     {l:'+$1,500/mo Ad Spend',v:fmt(revenue?(revenue+rev1500):rev1500,0),sub:`+${fmt(rev1500,0)} from ads est.`,hl:false},
@@ -512,8 +650,6 @@ function runOrganicAudit(){
     {l:'+$5,000/mo Ad Spend',v:fmt(revenue?(revenue+rev5000):rev5000,0),sub:`+${fmt(rev5000,0)} from ads est.`,hl:false},
   ];
   document.getElementById('org-proj-rows').innerHTML=pRows.map(r=>`<div class="proj-row${r.hl?' hl':''}"><div class="proj-s">${r.l}</div><div class="proj-v"><div><span>${r.v}</span><span class="sub">${r.sub}</span></div></div></div>`).join('');
-
-  // baseline table
   const bRows=[
     {l:'Monthly Revenue',c:revenue?fmt(revenue,0):'—',n:'Organic + referral baseline'},
     {l:'Booked Calls / Month',c:booked!=null?booked+' calls':'—',n:'From organic sources only'},
@@ -522,11 +658,9 @@ function runOrganicAudit(){
     {l:'Max CAC Ceiling',c:fmt(price*0.25,0),n:'25% of your '+fmt(price,0)+' offer price'},
   ];
   document.getElementById('org-tbody').innerHTML=bRows.map(r=>`<tr><td>${r.l}</td><td class="td-neu">${r.c}</td><td style="color:var(--g600);font-size:12px;font-family:var(--ff-b)">${r.n}</td></tr>`).join('');
-
   hide('form-organic');show('results-organic');scrollTo_('results-organic');
 }
 
-/* ── RESET ── */
 function resetToStart(){
   ['form-ads','form-organic','results-ads','results-organic'].forEach(hide);
   ['card-yes','card-no'].forEach(id=>document.getElementById(id).classList.remove('selected'));
